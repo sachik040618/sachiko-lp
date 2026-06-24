@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名古屋男性婚活研究所 | 婚活診断レポート</title>
+    <meta name="description" content="結婚相談所に入る前に、まず現在地を知る。女性目線の婚活診断レポートをβモニター価格4,980円で提供。30〜40代独身男性対象。全国オンライン対応。">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== RESET ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ===== VARIABLES ===== */
+        :root {
+            --navy-darkest: #0e2340;
+            --navy-dark:    #14305a;
+            --navy:         #1e3f73;
+            --navy-mid:     #2d5599;
+            --navy-pale:    #dce7f5;
+            --gold:         #c9a96e;
+            --gold-light:   #e8d5b0;
+            --gold-dark:    #a8864e;
+            --white:        #ffffff;
+            --off-white:    #f8f7f4;
+            --beige-light:  #f0ebe0;
+            --beige:        #d4c5a9;
+            --beige-dark:   #b8a88a;
+            --gray-light:   #f3f3f1;
+            --gray:         #9ca3af;
+            --gray-dark:    #6b7280;
+            --text-dark:    #1a2540;
+            --text:         #374151;
+            --text-light:   #6b7280;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.7;
+        }
+
+        /* ===== LAYOUT ===== */
+        .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 96px 24px; }
+
+        /* ===== SECTION HEADER ===== */
+        .sec-head { text-align: center; margin-bottom: 56px; }
+        .sec-label {
+            display: inline-block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 12px;
+            letter-spacing: 0.22em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .sec-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: clamp(20px, 3.2vw, 28px);
+            font-weight: 500;
+            color: var(--text-dark);
+            letter-spacing: 0.05em;
+            line-height: 1.55;
+            margin-bottom: 16px;
+        }
+        .sec-title.on-dark { color: var(--white); }
+        .sec-line { width: 32px; height: 1px; background: var(--gold); margin: 0 auto; }
+        .sec-desc { margin-top: 20px; font-size: 14px; color: var(--text-light); line-height: 1.9; }
+        .sec-desc.on-dark { color: rgba(255,255,255,0.6); }
+
+        /* ===== BUTTONS ===== */
+        .btn-gold {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--gold); color: var(--white);
+            font-size: 15px; font-weight: 500; letter-spacing: 0.08em;
+            padding: 16px 36px; text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
+            border: none; cursor: pointer;
+        }
+        .btn-gold:hover { background: var(--gold-dark); transform: translateY(-2px); }
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: transparent; color: var(--white);
+            font-size: 14px; letter-spacing: 0.06em;
+            padding: 14px 28px; text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.35);
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.06); }
+        .btn-navy {
+            display: block; text-align: center;
+            background: var(--navy); color: var(--white);
+            font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
+            padding: 14px 24px; text-decoration: none;
+            transition: background 0.3s;
+        }
+        .btn-navy:hover { background: var(--navy-mid); }
+
+        /* ===== REVEAL ANIMATION ===== */
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; }
+        .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+
+        /* ===== NAV ===== */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 32px;
+            transition: background 0.4s, box-shadow 0.4s, padding 0.3s;
+        }
+        .nav.scrolled {
+            background: rgba(10,22,40,0.97);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 24px rgba(0,0,0,0.25);
+            padding: 14px 32px;
+        }
+        .nav-logo {
+            font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 500;
+            color: var(--white); text-decoration: none; letter-spacing: 0.06em;
+        }
+        .nav-logo span { color: var(--gold); }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .nav-badge {
+            font-size: 13px; font-weight: 700; color: var(--navy-darkest);
+            background: var(--gold);
+            padding: 8px 18px; letter-spacing: 0.04em; white-space: nowrap;
+            box-shadow: 0 2px 12px rgba(201,169,110,0.5);
+        }
+        .nav-cta {
+            background: var(--gold); color: var(--white);
+            font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+            padding: 10px 20px; text-decoration: none;
+            transition: background 0.3s;
+        }
+        .nav-cta:hover { background: var(--gold-dark); }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(155deg, var(--navy-darkest) 0%, var(--navy) 55%, #2a528c 100%);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center;
+            padding: 120px 24px 88px;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 65% 55% at 50% 40%, rgba(201,169,110,0.09) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 10px;
+            border: 1px solid rgba(201,169,110,0.35); color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px; letter-spacing: 0.2em;
+            padding: 7px 18px; margin-bottom: 28px;
+        }
+        .hero-badge::before { content: '✦'; color: var(--gold); font-size: 8px; }
+        .hero-eyebrow {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 12px; letter-spacing: 0.25em;
+            color: var(--gold); text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .hero-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: clamp(26px, 4.8vw, 48px);
+            font-weight: 400; color: var(--white);
+            line-height: 1.65; letter-spacing: 0.05em;
+            margin-bottom: 44px;
+        }
+        .hero-title em { font-style: normal; color: var(--gold-light); }
+
+        .hero-features {
+            display: flex; align-items: center; justify-content: center;
+            flex-wrap: wrap; gap: 0; margin: 0 auto 48px;
+        }
+        .hero-feat {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 12px; font-weight: 300; letter-spacing: 0.16em;
+            color: rgba(255,255,255,0.82);
+            border: 1px solid rgba(201,169,110,0.35);
+            padding: 12px 28px;
+        }
+        .hero-feat-sep {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px; color: var(--gold);
+            padding: 0 10px; opacity: 0.55; line-height: 1;
+        }
+        .hero-footnote {
+            font-size: 11px; letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.3);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin-top: 20px;
+        }
+
+        /* PRICE BLOCK */
+        .hero-price {
+            display: inline-flex; flex-direction: column; align-items: center;
+            background: var(--gold);
+            padding: 36px 64px; margin-bottom: 32px; gap: 4px;
+            box-shadow: 0 8px 48px rgba(201,169,110,0.5);
+        }
+        .hero-price-label {
+            font-size: 11px; letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.75); text-transform: uppercase;
+        }
+        .hero-price-orig {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px; color: rgba(255,255,255,0.7);
+            text-decoration: line-through; margin-top: 2px; letter-spacing: 0.04em;
+        }
+        .hero-price-arrow {
+            font-size: 16px; color: rgba(10,22,40,0.65); line-height: 1.4;
+            letter-spacing: 0.1em; font-family: 'Noto Sans JP', sans-serif;
+        }
+        .hero-price-beta {
+            font-size: 14px; letter-spacing: 0.18em; color: rgba(10,22,40,0.88);
+            font-weight: 600; font-family: 'Noto Sans JP', sans-serif;
+        }
+        .hero-price-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 92px; font-weight: 400;
+            color: var(--navy-darkest); line-height: 1;
+            letter-spacing: -0.02em; margin-top: 2px;
+        }
+        .hero-price-amount sup {
+            font-size: 30px; vertical-align: top;
+            display: inline-block; margin-top: 12px; margin-right: 2px;
+            font-weight: 300;
+        }
+        .hero-price-note {
+            font-size: 11px; font-weight: 500; color: var(--gold);
+            letter-spacing: 0.18em; margin-top: 12px;
+            background: var(--navy-darkest); padding: 6px 20px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .hero-btns { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-bottom: 32px; }
+        .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .hero-tag {
+            font-size: 11px; color: rgba(255,255,255,0.45);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 5px 14px; letter-spacing: 0.04em;
+        }
+        .hero-scroll {
+            position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+        }
+        .hero-scroll-bar {
+            width: 1px; height: 44px;
+            background: linear-gradient(to bottom, transparent, rgba(201,169,110,0.6));
+            animation: pulse 2s ease infinite;
+        }
+        .hero-scroll span { font-size: 9px; color: rgba(255,255,255,0.25); letter-spacing: 0.18em; }
+        @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+        /* ===== PAIN POINTS ===== */
+        .s-pain { background: var(--off-white); }
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+            gap: 14px; max-width: 960px; margin: 0 auto;
+        }
+        .pain-card {
+            background: var(--white);
+            border: 1px solid rgba(0,0,0,0.06);
+            padding: 18px 22px;
+            display: flex; align-items: flex-start; gap: 14px;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .pain-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
+        .pain-icon {
+            width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px;
+            background: var(--navy-pale); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .pain-icon svg { width: 10px; height: 10px; }
+        .pain-text { font-size: 13px; line-height: 1.7; color: var(--text); }
+
+        /* ===== WHY SACHIKO ===== */
+        .s-why { background: var(--navy-darkest); }
+        .why-profile {
+            text-align: center; margin-bottom: 48px;
+        }
+        .why-profile-img {
+            width: 108px; height: 108px; border-radius: 50%;
+            overflow: hidden; margin: 0 auto 14px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 0 6px rgba(201,169,110,0.12);
+        }
+        .why-profile-img img { width: 100%; height: 100%; object-fit: cover; }
+        .why-profile-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px; font-style: italic; letter-spacing: 0.1em;
+            color: var(--white);
+        }
+        .why-profile-role {
+            font-size: 11px; letter-spacing: 0.16em;
+            color: rgba(255,255,255,0.45); margin-top: 5px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .why-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1px; max-width: 960px; margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+        }
+        .why-item {
+            background: var(--navy-darkest); padding: 36px 32px;
+            transition: background 0.3s;
+        }
+        .why-item:hover { background: rgba(201,169,110,0.05); }
+        .why-item.span2 { grid-column: 1 / -1; }
+        .why-item.span2 .why-content { max-width: 520px; margin: 0 auto; text-align: center; }
+        .why-item.span2 .why-tags { justify-content: center; }
+        .why-num {
+            font-family: 'Cormorant Garamond', serif; font-size: 11px;
+            letter-spacing: 0.2em; color: var(--gold); margin-bottom: 14px;
+        }
+        .why-title {
+            font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 500;
+            color: var(--white); margin-bottom: 10px; letter-spacing: 0.04em;
+        }
+        .why-desc { font-size: 13px; color: rgba(255,255,255,0.58); line-height: 1.85; }
+        .why-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+        .why-tag {
+            font-size: 11px; color: var(--gold);
+            border: 1px solid rgba(201,169,110,0.28); padding: 3px 10px;
+        }
+
+        /* ===== WHY FORMULA ===== */
+        .why-formula {
+            display: flex; align-items: stretch;
+            max-width: 960px; margin: 0 auto 48px;
+            border: 1px solid rgba(201,169,110,0.25);
+            background: rgba(255,255,255,0.02);
+        }
+        .why-pillar {
+            flex: 1; text-align: center; padding: 36px 28px;
+            border-right: 1px solid rgba(255,255,255,0.07);
+        }
+        .why-pillar:last-child { border-right: none; }
+        .why-pillar-en {
+            font-family: 'Cormorant Garamond', serif; font-size: 11px;
+            letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .why-pillar-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: clamp(17px, 2vw, 22px); font-weight: 500;
+            color: var(--white); line-height: 1.55; letter-spacing: 0.04em;
+            margin-bottom: 12px;
+        }
+        .why-pillar-desc {
+            font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.8;
+        }
+        .why-cross {
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif; font-size: 32px;
+            color: var(--gold); padding: 0 4px; flex-shrink: 0; opacity: 0.8;
+        }
+        .why-formula-note {
+            max-width: 960px; margin: -28px auto 52px;
+            text-align: center; font-size: 13px;
+            color: rgba(255,255,255,0.45); letter-spacing: 0.04em;
+        }
+        .why-formula-note strong { color: var(--gold-light); }
+
+        /* ===== WHAT YOU LEARN ===== */
+        .s-learn { background: var(--beige-light); }
+        .learn-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 16px; max-width: 960px; margin: 0 auto;
+        }
+        .learn-card {
+            background: var(--white); padding: 28px 22px; text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .learn-num {
+            display: block; font-family: 'Cormorant Garamond', serif;
+            font-size: 30px; color: var(--gold); line-height: 1; margin-bottom: 12px;
+        }
+        .learn-title {
+            font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 500;
+            color: var(--text-dark); margin-bottom: 8px;
+        }
+        .learn-desc { font-size: 12px; color: var(--text-light); line-height: 1.75; }
+
+        /* ===== REPORT SAMPLE ===== */
+        .s-report { background: var(--navy-dark); }
+        .report-wrap {
+            max-width: 960px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 48px; align-items: start;
+        }
+        .report-sample {
+            position: relative; max-height: 660px; overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+        }
+        .report-sample::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--navy-dark));
+            pointer-events: none;
+        }
+        .report-real-img { display: block; width: 100%; }
+        .report-real-img img { width: 100%; display: block; }
+
+        .report-hdr { border-bottom: 1px solid #eee; padding-bottom: 14px; margin-bottom: 16px; }
+        .report-hdr-label { font-size: 9px; letter-spacing: 0.22em; color: var(--gold); margin-bottom: 3px; }
+        .report-hdr-title { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 500; color: var(--text-dark); }
+
+        .radar-wrap { display: flex; justify-content: center; margin: 10px 0 14px; }
+        .radar-svg { width: 220px; height: 220px; }
+
+        .score-row {
+            display: flex; align-items: center; gap: 10px;
+            padding: 5px 0; border-bottom: 1px solid #f5f5f5; font-size: 11px;
+        }
+        .score-lbl { color: var(--text-light); min-width: 88px; }
+        .score-bar-bg { flex: 1; height: 3px; background: #f0f0f0; border-radius: 2px; overflow: hidden; }
+        .score-bar { height: 100%; background: var(--navy); border-radius: 2px; }
+        .score-val { font-weight: 600; color: var(--text-dark); min-width: 26px; text-align: right; font-size: 12px; }
+
+        .report-info { padding-top: 4px; }
+        .report-info-title {
+            font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 500;
+            color: var(--white); line-height: 1.6; margin-bottom: 20px;
+        }
+        .report-item {
+            display: flex; gap: 14px; align-items: flex-start;
+            padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .report-item-num {
+            font-family: 'Cormorant Garamond', serif; font-size: 14px;
+            color: var(--gold); min-width: 22px; padding-top: 1px;
+        }
+        .report-item-text { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.65; }
+        .report-item-text strong { color: var(--white); display: block; margin-bottom: 2px; font-size: 14px; }
+        .report-note {
+            margin-top: 20px; padding: 14px 16px;
+            background: rgba(201,169,110,0.1); border-left: 2px solid var(--gold);
+        }
+        .report-note p { font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.85; }
+        .report-note strong { color: var(--gold-light); }
+
+        /* ===== SERVICES ===== */
+        .s-services { background: var(--off-white); }
+        .svc-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 20px; max-width: 960px; margin: 0 auto;
+        }
+        .svc-card {
+            background: var(--white); border: 1px solid rgba(0,0,0,0.08);
+            display: flex; flex-direction: column; position: relative;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .svc-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.1); transform: translateY(-4px); }
+        .svc-card.featured { border: 2px solid var(--gold); }
+        .svc-featured-badge {
+            position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+            background: var(--gold); color: var(--white);
+            font-size: 11px; letter-spacing: 0.08em; padding: 4px 16px; white-space: nowrap;
+        }
+        .svc-head { padding: 28px 22px 18px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .svc-num {
+            font-family: 'Cormorant Garamond', serif; font-size: 11px;
+            letter-spacing: 0.2em; color: var(--gold); margin-bottom: 8px;
+        }
+        .svc-name {
+            font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 500;
+            color: var(--text-dark); margin-bottom: 14px; letter-spacing: 0.03em;
+        }
+        .svc-price-orig { font-size: 12px; color: var(--gray); text-decoration: line-through; }
+        .svc-beta-tag {
+            display: inline-block; font-size: 10px;
+            background: var(--gold); color: var(--white);
+            padding: 2px 7px; letter-spacing: 0.05em; margin-left: 6px; vertical-align: middle;
+        }
+        .svc-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 38px; font-weight: 500; color: var(--navy); line-height: 1.15;
+        }
+        .svc-price sup { font-size: 17px; vertical-align: super; }
+        .svc-price sub { font-size: 15px; vertical-align: baseline; }
+        .svc-price-note { font-size: 11px; color: var(--gray-dark); margin-top: 3px; }
+        .svc-body { padding: 22px; flex: 1; }
+        .svc-items { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+        .svc-items li { display: flex; gap: 10px; font-size: 13px; color: var(--text); line-height: 1.6; }
+        .svc-items li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+        .svc-option {
+            margin-top: 14px; padding-top: 14px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            font-size: 12px; color: var(--text-light);
+        }
+        .svc-option strong { color: var(--text); display: block; margin-bottom: 4px; }
+        .svc-footer { padding: 0 22px 22px; }
+        .svc-cta {
+            display: block; text-align: center; padding: 13px;
+            background: var(--navy); color: var(--white);
+            font-size: 13px; letter-spacing: 0.08em; text-decoration: none;
+            transition: background 0.3s;
+        }
+        .svc-cta:hover { background: var(--navy-mid); }
+        .svc-card.featured .svc-cta { background: var(--gold); }
+        .svc-card.featured .svc-cta:hover { background: var(--gold-dark); }
+
+        /* ===== PROFILE ===== */
+        .s-profile { background: var(--white); }
+        .profile-wrap {
+            max-width: 960px; margin: 0 auto;
+            display: grid; grid-template-columns: 220px 1fr;
+            gap: 52px; align-items: start;
+        }
+        .profile-img-box { text-align: center; }
+        .profile-img {
+            width: 190px; height: 220px;
+            background: var(--beige-light); border: 1px solid var(--beige);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            margin: 0 auto 14px; overflow: hidden;
+        }
+        /* Real photo: replace SVG with <img src="photo.jpg" alt="Sachiko" style="width:100%;height:100%;object-fit:cover"> */
+        .profile-img svg { width: 72px; height: 72px; stroke: var(--beige); }
+        .profile-img-label { font-size: 10px; color: var(--beige-dark); letter-spacing: 0.12em; margin-top: 6px; }
+        .profile-badges { display: flex; flex-direction: column; gap: 5px; margin-top: 10px; }
+        .profile-badge {
+            font-size: 10px; letter-spacing: 0.08em; color: var(--text-light);
+            border: 1px solid rgba(0,0,0,0.1); padding: 5px 8px; text-align: center;
+        }
+        .p-name-en {
+            font-family: 'Cormorant Garamond', serif; font-size: 30px;
+            color: var(--text-dark); letter-spacing: 0.05em; line-height: 1; margin-bottom: 4px;
+        }
+        .p-name-ja {
+            font-family: 'Noto Serif JP', serif; font-size: 14px;
+            color: var(--gold); letter-spacing: 0.2em; margin-bottom: 22px;
+        }
+        .p-career { display: flex; flex-direction: column; gap: 9px; margin-bottom: 22px; }
+        .p-career-item { display: flex; gap: 12px; font-size: 13px; color: var(--text); }
+        .p-career-dot {
+            width: 6px; height: 6px; background: var(--gold);
+            border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+        }
+        .p-bio { font-size: 14px; line-height: 1.95; color: var(--text-light); margin-bottom: 18px; }
+        .p-quote {
+            border-left: 2px solid var(--gold); padding-left: 16px;
+            font-family: 'Noto Serif JP', serif; font-size: 14px;
+            line-height: 1.9; color: var(--text);
+        }
+
+        /* ===== FLOW ===== */
+        .s-flow { background: var(--gray-light); }
+        .flow-list { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; }
+        .flow-item {
+            display: flex; gap: 24px; align-items: flex-start;
+            position: relative; padding-bottom: 32px;
+        }
+        .flow-item:not(:last-child)::after {
+            content: ''; position: absolute; left: 19px; top: 42px; bottom: 0;
+            width: 1px; background: linear-gradient(to bottom, rgba(201,169,110,0.5), transparent);
+        }
+        .flow-circle {
+            width: 40px; height: 40px;
+            border: 1px solid var(--gold); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif; font-size: 16px;
+            color: var(--gold); flex-shrink: 0; background: var(--white); z-index: 1;
+        }
+        .flow-body { padding-top: 6px; }
+        .flow-title {
+            font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 500;
+            color: var(--text-dark); margin-bottom: 6px;
+        }
+        .flow-desc { font-size: 13px; color: var(--text-light); line-height: 1.8; }
+
+        /* ===== FAQ ===== */
+        .s-faq { background: var(--white); }
+        .faq-wrap { max-width: 700px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
+        .faq-q {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 18px 4px; cursor: pointer; gap: 16px; user-select: none;
+        }
+        .faq-q-inner { display: flex; gap: 14px; align-items: flex-start; }
+        .faq-ql {
+            font-family: 'Cormorant Garamond', serif; font-size: 16px;
+            color: var(--gold); font-weight: 500; flex-shrink: 0;
+        }
+        .faq-qtext { font-size: 15px; font-weight: 500; color: var(--text-dark); line-height: 1.5; }
+        .faq-icon {
+            width: 22px; height: 22px; flex-shrink: 0;
+            border: 1px solid rgba(0,0,0,0.15); border-radius: 50%; position: relative;
+        }
+        .faq-icon::before, .faq-icon::after {
+            content: ''; position: absolute; background: var(--text-light); border-radius: 1px;
+        }
+        .faq-icon::before { width: 9px; height: 1px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+        .faq-icon::after { width: 1px; height: 9px; top: 50%; left: 50%; transform: translate(-50%,-50%); transition: opacity 0.3s, transform 0.3s; }
+        .faq-item.open .faq-icon::after { opacity: 0; transform: translate(-50%,-50%) rotate(90deg); }
+        .faq-ans { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-item.open .faq-ans { max-height: 280px; }
+        .faq-ans-inner { display: flex; gap: 14px; padding: 4px 4px 22px; }
+        .faq-al {
+            font-family: 'Cormorant Garamond', serif; font-size: 16px;
+            color: var(--navy); flex-shrink: 0;
+        }
+        .faq-atext { font-size: 13px; color: var(--text-light); line-height: 1.9; }
+
+        /* ===== CONTACT ===== */
+        .s-contact {
+            background: linear-gradient(155deg, var(--navy-darkest) 0%, var(--navy) 100%);
+            text-align: center;
+        }
+        .contact-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(201,169,110,0.12); border: 1px solid rgba(201,169,110,0.3);
+            color: var(--gold); font-size: 11px; letter-spacing: 0.15em;
+            padding: 6px 16px; margin-bottom: 20px;
+        }
+        .contact-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: clamp(22px, 3.8vw, 34px);
+            font-weight: 400; color: var(--white); line-height: 1.6; margin-bottom: 10px;
+        }
+        .contact-price-box {
+            display: inline-flex; flex-direction: column; align-items: center;
+            background: var(--gold);
+            padding: 32px 60px; margin: 24px auto 28px;
+            box-shadow: 0 8px 48px rgba(201,169,110,0.5); gap: 4px;
+        }
+        .contact-price-orig { font-size: 18px; color: rgba(255,255,255,0.7); text-decoration: line-through; }
+        .contact-price-main {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 92px; font-weight: 400; color: var(--navy-darkest);
+            line-height: 1; letter-spacing: -0.02em;
+        }
+        .contact-price-main sup {
+            font-size: 30px; vertical-align: top;
+            display: inline-block; margin-top: 12px; margin-right: 2px;
+            font-weight: 300;
+        }
+        .contact-price-note {
+            font-size: 14px; font-weight: 700; color: var(--gold);
+            letter-spacing: 0.08em; background: var(--navy-darkest);
+            padding: 6px 20px; margin-top: 8px;
+        }
+        .contact-desc {
+            font-size: 14px; color: rgba(255,255,255,0.58); line-height: 1.95;
+            margin-bottom: 32px; max-width: 540px; margin-left: auto; margin-right: auto;
+        }
+        /* Google Form Embed Area */
+        .form-area {
+            max-width: 620px; margin: 0 auto 28px;
+        }
+        .form-placeholder {
+            border: 1px dashed rgba(255,255,255,0.18); padding: 52px 24px;
+            color: rgba(255,255,255,0.25); text-align: center;
+        }
+        .form-placeholder p { font-size: 12px; letter-spacing: 0.1em; line-height: 2; }
+        .form-placeholder code {
+            display: block; margin-top: 8px; font-size: 10px;
+            color: rgba(255,255,255,0.15); font-family: monospace;
+        }
+        .form-area iframe { width: 100%; border: none; display: block; }
+        .contact-note {
+            font-size: 12px; color: rgba(255,255,255,0.28); line-height: 2;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--navy-darkest); padding: 40px 24px 32px;
+            text-align: center; border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .footer-logo {
+            font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 500;
+            color: rgba(255,255,255,0.55); letter-spacing: 0.1em; margin-bottom: 6px;
+        }
+        .footer-sub { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.12em; margin-bottom: 20px; }
+        .footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); }
+
+        /* ===== FLOATING CTA ===== */
+        .floating-cta {
+            position: fixed; bottom: 24px; right: 24px; z-index: 50;
+            display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+            transform: translateY(100px); opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            pointer-events: none;
+        }
+        .floating-cta.visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
+        .floating-badge {
+            background: var(--gold); color: var(--navy-darkest);
+            font-size: 14px; font-weight: 700; padding: 8px 18px;
+            letter-spacing: 0.05em;
+            box-shadow: 0 2px 12px rgba(201,169,110,0.5);
+        }
+        .floating-btn {
+            background: var(--gold); color: var(--white);
+            font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
+            padding: 13px 22px; text-decoration: none;
+            display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 4px 24px rgba(201,169,110,0.45);
+            transition: background 0.3s, transform 0.3s;
+        }
+        .floating-btn:hover { background: var(--gold-dark); transform: translateY(-2px); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            section { padding: 72px 20px; }
+            .nav { padding: 16px 20px; }
+            .nav.scrolled { padding: 12px 20px; }
+            .nav-badge { display: none; }
+            .why-formula { flex-direction: column; }
+            .why-pillar { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+            .why-pillar:last-child { border-bottom: none; }
+            .why-cross { padding: 4px 0; font-size: 24px; }
+            .why-grid { grid-template-columns: 1fr; }
+            .why-item.span2 { grid-column: auto; }
+            .why-item.span2 .why-content { text-align: left; }
+            .why-item.span2 .why-tags { justify-content: flex-start; }
+            .learn-grid { grid-template-columns: 1fr 1fr; }
+            .report-wrap { grid-template-columns: 1fr; gap: 32px; }
+            .svc-grid { grid-template-columns: 1fr; }
+            .svc-card.featured { margin-top: 16px; }
+            .profile-wrap { grid-template-columns: 1fr; gap: 28px; }
+            .profile-img-box { display: flex; flex-direction: column; align-items: center; }
+            .floating-cta { bottom: 16px; right: 16px; }
+        }
+        @media (max-width: 480px) {
+            .pain-grid { grid-template-columns: 1fr; }
+            .learn-grid { grid-template-columns: 1fr; }
+            .hero-price { padding: 24px 32px; }
+            .hero-price-amount { font-size: 72px; }
+            .hero-price-amount sup { font-size: 24px; }
+            .contact-price-main { font-size: 72px; }
+            .nav-badge { display: none; }
+            .why-formula-note { margin: -16px auto 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+    <a href="#top" class="nav-logo">名古屋男性婚活研究所<span>.</span></a>
+    <div class="nav-right">
+        <span class="nav-badge">βモニター ¥4,980 · 先着5名</span>
+        <a href="#contact" class="nav-cta">婚活診断を申し込む</a>
+    </div>
+</nav>
+
+<!-- ===== 1. HERO ===== -->
+<section class="hero" id="top">
+    <div class="hero-badge">Nagoya Konkatsu Research Institute</div>
+    <h1 class="hero-title">
+        結婚相談所に入る前に、<br>
+        <em>まずは現在地を知りませんか？</em>
+    </h1>
+    <div class="hero-features reveal">
+        <div class="hero-feat">写真・プロフ分析</div>
+        <div class="hero-feat-sep">✦</div>
+        <div class="hero-feat">女性目線のフィードバック</div>
+        <div class="hero-feat-sep">✦</div>
+        <div class="hero-feat">PDFレポート納品</div>
+    </div>
+    <div class="hero-price reveal">
+        <span class="hero-price-label">通常価格</span>
+        <span class="hero-price-orig">9,800円</span>
+        <span class="hero-price-arrow">↓</span>
+        <span class="hero-price-beta">βモニター価格</span>
+        <div class="hero-price-amount"><sup>¥</sup>4,980</div>
+        <span class="hero-price-note">先着5名限定</span>
+    </div>
+    <div class="hero-btns reveal d1">
+        <a href="#contact" class="btn-gold">婚活診断を申し込む →</a>
+        <a href="#report" class="btn-ghost">レポートサンプルを見る</a>
+    </div>
+    <p class="hero-footnote reveal d2">全国オンライン対応 · Zoom 30分 · 名古屋近郊は対面相談可</p>
+    <div class="hero-scroll">
+        <div class="hero-scroll-bar"></div>
+        <span>Scroll</span>
+    </div>
+</section>
+
+<!-- ===== 2. PAIN POINTS ===== -->
+<section class="s-pain" id="problems">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="sec-label">Your Concerns</span>
+            <h2 class="sec-title">こんなお悩みありませんか？</h2>
+            <div class="sec-line"></div>
+        </div>
+        <div class="pain-grid">
+            <div class="pain-card reveal d1">
+                <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <p class="pain-text">結婚相談所に入るべきか、今の自分で大丈夫か迷っている</p>
+            </div>
+            <div class="pain-card reveal d2">
+                <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <p class="pain-text">マッチングアプリで結果が出ない。何が問題かわからない</p>
+            </div>
+            <div class="pain-card reveal d3">
+                <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <p class="pain-text">女性目線の率直な意見を聞いたことがない</p>
+            </div>
+            <div class="pain-card reveal d1">
+                <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <p class="pain-text">写真やプロフィール文に自信がない</p>
+            </div>
+            <div class="pain-card reveal d2">
+                <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <p class="pain-text">婚活を続けているのに、なかなか成果が出ない</p>
+            </div>
+            <div class="pain-card reveal d3">
+                <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <p class="pain-text">何を改善すれば良いかわからない</p>
+            </div>
+            <div class="pain-card reveal d1">
+                <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <p class="pain-text">一人で婚活を続けることに疲れてきた</p>
+            </div>
+            <div class="pain-card reveal d2">
+                <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <p class="pain-text">結婚相談所に数十万円払う前に、現在地を把握したい</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 3. WHY SACHIKO ===== -->
+<section class="s-why" id="why">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="sec-label">Why Sachiko</span>
+            <h2 class="sec-title on-dark">なぜSachikoのアドバイスに価値があるのか</h2>
+            <div class="sec-line"></div>
+        </div>
+
+        <!-- PROFILE PHOTO -->
+        <div class="why-profile reveal">
+            <div class="why-profile-img">
+                <img src="sachiko.webp" alt="Sachiko">
+            </div>
+            <div class="why-profile-name">Sachiko</div>
+            <div class="why-profile-role">外資系アナリスト / 婚活研究家</div>
+        </div>
+
+        <!-- FORMULA BANNER -->
+        <div class="why-formula reveal d1">
+            <div class="why-pillar">
+                <div class="why-pillar-en">Apparel</div>
+                <div class="why-pillar-title">元アパレル<br>商社営業</div>
+                <p class="why-pillar-desc">服装・サイズ感・清潔感・<br>第一印象を実践的に言語化</p>
+            </div>
+            <div class="why-cross">×</div>
+            <div class="why-pillar">
+                <div class="why-pillar-en">Analyst</div>
+                <div class="why-pillar-title">現役外資系<br>アナリスト</div>
+                <p class="why-pillar-desc">現状分析・課題整理・<br>改善提案が本業のスキル</p>
+            </div>
+            <div class="why-cross">×</div>
+            <div class="why-pillar">
+                <div class="why-pillar-en">Perspective</div>
+                <div class="why-pillar-title">ターゲット層に<br>近い女性目線</div>
+                <p class="why-pillar-desc">30〜40代男性が出会いたい<br>女性層からの率直なFB</p>
+            </div>
+        </div>
+        <p class="why-formula-note reveal d2">この3つが重なるのが、Sachikoの診断が<strong>「使える」</strong>理由です。</p>
+
+        <!-- DETAIL CARDS -->
+        <div class="why-grid">
+            <div class="why-item reveal d1">
+                <div class="why-num">01 &nbsp;/ &nbsp;APPAREL</div>
+                <h3 class="why-title">元アパレル商社 営業</h3>
+                <p class="why-desc">大手アパレル商社での営業経験により、服装・サイズ感・清潔感・第一印象について、実践的かつ具体的なアドバイスができます。「なんとなく良い」ではなく、何がどう見えるかを言語化します。</p>
+                <div class="why-tags">
+                    <span class="why-tag">服装</span><span class="why-tag">サイズ感</span>
+                    <span class="why-tag">清潔感</span><span class="why-tag">第一印象</span>
+                </div>
+            </div>
+            <div class="why-item reveal d2">
+                <div class="why-num">02 &nbsp;/ &nbsp;ANALYST</div>
+                <h3 class="why-title">現役 外資系アナリスト</h3>
+                <p class="why-desc">大手外資系半導体メーカーのアナリストとして、現状分析・課題整理・改善提案を日常的に行っています。婚活も感覚ではなく、構造的に捉えて整理します。</p>
+                <div class="why-tags">
+                    <span class="why-tag">現状分析</span><span class="why-tag">課題整理</span>
+                    <span class="why-tag">改善提案</span>
+                </div>
+            </div>
+            <div class="why-item reveal d1">
+                <div class="why-num">03 &nbsp;/ &nbsp;EXPERIENCE</div>
+                <h3 class="why-title">婚活経験者</h3>
+                <p class="why-desc">自身も婚活経験があるため、婚活特有の悩みや不安を理解しています。表面的なアドバイスではなく、当事者として寄り添ったフィードバックができます。</p>
+                <div class="why-tags">
+                    <span class="why-tag">当事者視点</span><span class="why-tag">実体験に基づく理解</span>
+                </div>
+            </div>
+            <div class="why-item reveal d2">
+                <div class="why-num">04 &nbsp;/ &nbsp;PERSPECTIVE</div>
+                <h3 class="why-title">ターゲット層に近い女性目線</h3>
+                <p class="why-desc">30〜40代男性が出会いたい女性層に近い立場として、「何を見ているか」「何に好印象を持つか」「何に違和感を感じるか」を建前なく率直にお伝えできます。</p>
+                <div class="why-tags">
+                    <span class="why-tag">女性目線</span><span class="why-tag">率直なFB</span>
+                </div>
+            </div>
+            <div class="why-item span2 reveal d3">
+                <div class="why-content">
+                    <div class="why-num">05 &nbsp;/ &nbsp;STRENGTH</div>
+                    <h3 class="why-title">人の魅力を見つけることが得意</h3>
+                    <p class="why-desc">欠点探しではなく、あなたが既に持っている魅力がどうすれば相手に伝わるかを重視します。「どう変えるか」より「どう見せるか」の視点でサポートします。</p>
+                    <div class="why-tags">
+                        <span class="why-tag">強み発見</span><span class="why-tag">魅力の言語化</span>
+                        <span class="why-tag">印象設計</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 5. WHAT YOU LEARN ===== -->
+<section class="s-learn" id="learn">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="sec-label">Diagnosis Report</span>
+            <h2 class="sec-title">婚活診断レポートで分かること</h2>
+            <div class="sec-line"></div>
+        </div>
+        <div class="learn-grid">
+            <div class="learn-card reveal d1">
+                <span class="learn-num">01</span>
+                <h3 class="learn-title">あなたの強み</h3>
+                <p class="learn-desc">女性目線で見た、あなたが既に持っている婚活上の強みを明確にします</p>
+            </div>
+            <div class="learn-card reveal d2">
+                <span class="learn-num">02</span>
+                <h3 class="learn-title">改善ポイント</h3>
+                <p class="learn-desc">今すぐ改善すべき課題を、優先度順に整理してお伝えします</p>
+            </div>
+            <div class="learn-card reveal d3">
+                <span class="learn-num">03</span>
+                <h3 class="learn-title">女性目線の第一印象</h3>
+                <p class="learn-desc">プロフィール・写真・清潔感に対して女性がどう感じるかを率直にフィードバックします</p>
+            </div>
+            <div class="learn-card reveal d1">
+                <span class="learn-num">04</span>
+                <h3 class="learn-title">婚活市場での立ち位置</h3>
+                <p class="learn-desc">同世代と比較したとき、あなたの婚活市場での現在地を把握します</p>
+            </div>
+            <div class="learn-card reveal d2">
+                <span class="learn-num">05</span>
+                <h3 class="learn-title">優先順位付き改善提案</h3>
+                <p class="learn-desc">何から手をつけるべきか、具体的な優先順位付きで改善策を提示します</p>
+            </div>
+            <div class="learn-card reveal d3">
+                <span class="learn-num">06</span>
+                <h3 class="learn-title">30日アクションプラン</h3>
+                <p class="learn-desc">診断後すぐに動ける、30日間の具体的なアクションプランをお渡しします</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 6. REPORT SAMPLE ===== -->
+<section class="s-report" id="report">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="sec-label">Sample Report</span>
+            <h2 class="sec-title on-dark">診断レポートのサンプル</h2>
+            <div class="sec-line"></div>
+            <p class="sec-desc on-dark">個別婚活ヒアリング(シート記入)後、このようなPDFレポートをお渡しします。</p>
+        </div>
+        <div class="report-wrap">
+
+            <div class="report-sample reveal">
+                <div class="report-real-img">
+                    <img src="report-sample.png" alt="婚活診断レポートサンプル">
+                </div>
+
+                <!-- 旧モックアップ -->
+                <div class="report-mock" style="display:none">
+                    <div class="report-hdr">
+                        <div class="report-hdr-label">NAGOYA KONKATSU RESEARCH INSTITUTE</div>
+                        <div class="report-hdr-title">婚活診断レポート</div>
+                    </div>
+                    <div class="radar-wrap">
+                        <!-- SVG Radar Chart: 5 axes, center(150,150), r=80 -->
+                        <svg class="radar-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Grid 33% r=26 -->
+                            <polygon points="150,124 175,142 165,171 135,171 125,142" fill="none" stroke="#e5e7eb" stroke-width="0.8"/>
+                            <!-- Grid 66% r=53 -->
+                            <polygon points="150,97 200,133 181,193 119,193 100,133" fill="none" stroke="#e5e7eb" stroke-width="0.8"/>
+                            <!-- Grid 100% r=80 -->
+                            <polygon points="150,70 226,125 197,215 103,215 74,125" fill="none" stroke="#d1d5db" stroke-width="1"/>
+                            <!-- Axis lines -->
+                            <line x1="150" y1="150" x2="150" y2="70"  stroke="#e5e7eb" stroke-width="0.8"/>
+                            <line x1="150" y1="150" x2="226" y2="125" stroke="#e5e7eb" stroke-width="0.8"/>
+                            <line x1="150" y1="150" x2="197" y2="215" stroke="#e5e7eb" stroke-width="0.8"/>
+                            <line x1="150" y1="150" x2="103" y2="215" stroke="#e5e7eb" stroke-width="0.8"/>
+                            <line x1="150" y1="150" x2="74"  y2="125" stroke="#e5e7eb" stroke-width="0.8"/>
+                            <!-- Data: 写真70 清潔感55 プロフ65 メッセ40 デート60 -->
+                            <polygon points="150,94 192,136 198,213 131,176 104,135"
+                                fill="rgba(26,47,82,0.14)" stroke="#1a2f52" stroke-width="1.8"/>
+                            <circle cx="150" cy="94"  r="3.5" fill="#1a2f52"/>
+                            <circle cx="192" cy="136" r="3.5" fill="#1a2f52"/>
+                            <circle cx="198" cy="213" r="3.5" fill="#1a2f52"/>
+                            <circle cx="131" cy="176" r="3.5" fill="#1a2f52"/>
+                            <circle cx="104" cy="135" r="3.5" fill="#1a2f52"/>
+                            <!-- Labels -->
+                            <text x="150" y="58"  text-anchor="middle" font-size="9.5" fill="#6b7280" font-family="sans-serif">プロフィール写真</text>
+                            <text x="233" y="123" text-anchor="start"  font-size="9.5" fill="#6b7280" font-family="sans-serif">清潔感</text>
+                            <text x="205" y="232" text-anchor="middle" font-size="9.5" fill="#6b7280" font-family="sans-serif">プロフィール文</text>
+                            <text x="95"  y="232" text-anchor="middle" font-size="9.5" fill="#6b7280" font-family="sans-serif">メッセージ力</text>
+                            <text x="67"  y="123" text-anchor="end"    font-size="9.5" fill="#6b7280" font-family="sans-serif">デート力</text>
+                        </svg>
+                    </div>
+                    <div class="score-row"><span class="score-lbl">プロフィール写真</span><div class="score-bar-bg"><div class="score-bar" style="width:70%"></div></div><span class="score-val">70</span></div>
+                    <div class="score-row"><span class="score-lbl">清潔感</span><div class="score-bar-bg"><div class="score-bar" style="width:55%"></div></div><span class="score-val">55</span></div>
+                    <div class="score-row"><span class="score-lbl">プロフィール文</span><div class="score-bar-bg"><div class="score-bar" style="width:65%"></div></div><span class="score-val">65</span></div>
+                    <div class="score-row"><span class="score-lbl">メッセージ力</span><div class="score-bar-bg"><div class="score-bar" style="width:40%"></div></div><span class="score-val">40</span></div>
+                    <div class="score-row"><span class="score-lbl">デート力</span><div class="score-bar-bg"><div class="score-bar" style="width:60%"></div></div><span class="score-val">60</span></div>
+                </div>
+            </div>
+
+            <!-- REPORT CONTENTS LIST -->
+            <div class="report-info reveal d2">
+                <h3 class="report-info-title">レポートに含まれる内容</h3>
+                <div class="report-item">
+                    <span class="report-item-num">①</span>
+                    <div class="report-item-text"><strong>婚活総合評価（レーダーチャート）</strong>5項目をスコア化して可視化。現在地が一目で分かります</div>
+                </div>
+                <div class="report-item">
+                    <span class="report-item-num">②</span>
+                    <div class="report-item-text"><strong>強み分析</strong>あなたが持っているアピールポイントを整理します</div>
+                </div>
+                <div class="report-item">
+                    <span class="report-item-num">③</span>
+                    <div class="report-item-text"><strong>改善ポイント</strong>優先度順に、具体的な改善策を提示します</div>
+                </div>
+                <div class="report-item">
+                    <span class="report-item-num">④</span>
+                    <div class="report-item-text"><strong>女性目線フィードバック</strong>率直な女性目線での印象・コメントをお伝えします</div>
+                </div>
+                <div class="report-item">
+                    <span class="report-item-num">⑤</span>
+                    <div class="report-item-text"><strong>婚活市場での立ち位置</strong>同世代との比較・現在地の把握</div>
+                </div>
+                <div class="report-item">
+                    <span class="report-item-num">⑥</span>
+                    <div class="report-item-text"><strong>30日アクションプラン</strong>今日から動ける具体的な行動計画</div>
+                </div>
+                <div class="report-item">
+                    <span class="report-item-num">⑦</span>
+                    <div class="report-item-text"><strong>Sachikoからの総評</strong>全体を通じた女性目線でのメッセージ</div>
+                </div>
+                <div class="report-note">
+                    <p><strong>事前提出物：</strong><br>マッチングアプリのプロフィール画面 / プロフィール写真 / 基本情報フォーム</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 7. SERVICES ===== -->
+<section class="s-services" id="services">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="sec-label">Services</span>
+            <h2 class="sec-title">サービス一覧</h2>
+            <div class="sec-line"></div>
+        </div>
+        <div class="svc-grid">
+            <!-- Plan 01 -->
+            <div class="svc-card featured reveal d1">
+                <div class="svc-featured-badge">おすすめ · βモニター募集中</div>
+                <div class="svc-head">
+                    <div class="svc-num">Plan 01</div>
+                    <h3 class="svc-name">婚活診断レポート</h3>
+                    <div>
+                        <span class="svc-price-orig">通常 9,800円</span>
+                        <span class="svc-beta-tag">β特別価格</span>
+                    </div>
+                    <div class="svc-price"><sup>¥</sup>4,980<sub>円</sub></div>
+                    <div class="svc-price-note">先着5名限定</div>
+                </div>
+                <div class="svc-body">
+                    <ul class="svc-items">
+                        <li>個別婚活ヒアリング（シート形式）</li>
+                        <li>プロフィール診断</li>
+                        <li>プロフィール写真診断</li>
+                        <li>婚活診断レポートPDF 納品</li>
+                        <li>レーダーチャート・強み・改善ポイント・30日プラン</li>
+                    </ul>
+                </div>
+                <div class="svc-footer">
+                    <a href="#contact" class="svc-cta">婚活診断を申し込む →</a>
+                </div>
+            </div>
+            <!-- Plan 02 -->
+            <div class="svc-card reveal d2">
+                <div class="svc-head">
+                    <div class="svc-num">Plan 02</div>
+                    <h3 class="svc-name">プロフィール改善パック</h3>
+                    <div class="svc-price"><sup>¥</sup>19,800<sub>円</sub></div>
+                </div>
+                <div class="svc-body">
+                    <ul class="svc-items">
+                        <li>Zoom面談 60分</li>
+                        <li>プロフィール添削</li>
+                        <li>プロフィール写真選定</li>
+                        <li>清潔感アドバイス</li>
+                        <li>服装アドバイス</li>
+                        <li>改善版プロフィール 納品</li>
+                        <li>おすすめ服装提案・購入推奨アイテム一覧</li>
+                    </ul>
+                    <div class="svc-option">
+                        <strong>オプション（名古屋近郊）</strong>
+                        対面相談 +4,000円（カフェ代込）
+                    </div>
+                </div>
+                <div class="svc-footer">
+                    <a href="#contact" class="svc-cta btn-navy">詳細・申し込み →</a>
+                </div>
+            </div>
+            <!-- Plan 03 -->
+            <div class="svc-card reveal d3">
+                <div class="svc-head">
+                    <div class="svc-num">Plan 03</div>
+                    <h3 class="svc-name">婚活ブーストプラン</h3>
+                    <div class="svc-price"><sup>¥</sup>49,800<sub>円</sub></div>
+                    <div class="svc-price-note">1ヶ月間 · 名古屋近郊限定</div>
+                </div>
+                <div class="svc-body">
+                    <ul class="svc-items">
+                        <li>月2回 Zoom面談</li>
+                        <li>チャット相談（期間中）</li>
+                        <li>デート前相談・後振り返り</li>
+                        <li>プロフィール改善</li>
+                        <li>初回 対面面談付き（名古屋近郊）</li>
+                    </ul>
+                </div>
+                <div class="svc-footer">
+                    <a href="#contact" class="svc-cta btn-navy">詳細・申し込み →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 8. PROFILE ===== -->
+<section class="s-profile" id="profile">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="sec-label">Consultant</span>
+            <h2 class="sec-title">プロフィール</h2>
+            <div class="sec-line"></div>
+        </div>
+        <div class="profile-wrap">
+            <div class="profile-img-box reveal">
+                <div class="profile-img">
+                    <img src="sachiko.webp" alt="Sachiko" style="width:100%;height:100%;object-fit:cover">
+                </div>
+                <div class="profile-badges">
+                    <div class="profile-badge">Bridal Consultant</div>
+                    <div class="profile-badge">元アパレル商社 営業</div>
+                    <div class="profile-badge">現役 外資系アナリスト</div>
+                </div>
+            </div>
+            <div class="reveal d2">
+                <div class="p-name-en">Sachiko</div>
+                <div class="p-name-ja">サチコ</div>
+                <div class="p-career">
+                    <div class="p-career-item">
+                        <div class="p-career-dot"></div>
+                        <span>大手アパレル商社 営業職</span>
+                    </div>
+                    <div class="p-career-item">
+                        <div class="p-career-dot"></div>
+                        <span>大手外資系半導体メーカー アナリスト（現職）</span>
+                    </div>
+                    <div class="p-career-item">
+                        <div class="p-career-dot"></div>
+                        <span>自身の婚活経験から、30〜40代男性と多数出会ってきた当事者の視点</span>
+                    </div>
+                </div>
+                <p class="p-bio">
+                    大手アパレル商社での営業を経て、現在は大手外資系半導体メーカーでアナリストとして従事。アパレル業界で培ったファッション感覚と、アナリストとしての分析力を活かし、婚活中の男性が本来持っている魅力を引き出すサポートを行います。<br><br>
+                    自身も婚活経験があり、30〜40代男性が出会いたい女性層に近い立場から、リアルな女性目線でアドバイスします。
+                </p>
+                <div class="p-quote">
+                    「優しく寄り添いながらも、改善すべき点は率直にお伝えします。<br>
+                    あなたの魅力は、きっとまだ伝わりきっていないだけです。」
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 9. FLOW ===== -->
+<section class="s-flow" id="flow">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="sec-label">How to Start</span>
+            <h2 class="sec-title">申し込みから診断レポート受け取りまで</h2>
+            <div class="sec-line"></div>
+        </div>
+        <div class="flow-list">
+            <div class="flow-item reveal">
+                <div class="flow-circle">1</div>
+                <div class="flow-body">
+                    <h3 class="flow-title">フォームからお申し込み</h3>
+                    <p class="flow-desc">このページ下部の申し込みフォームより、簡単な婚活状況をご記入の上お申し込みください。</p>
+                </div>
+            </div>
+            <div class="flow-item reveal d1">
+                <div class="flow-circle">2</div>
+                <div class="flow-body">
+                    <h3 class="flow-title">事前情報のご提出</h3>
+                    <p class="flow-desc">マッチングアプリのプロフィール画面・写真・基本情報フォームをご提出いただきます。</p>
+                </div>
+            </div>
+            <div class="flow-item reveal d2">
+                <div class="flow-circle">3</div>
+                <div class="flow-body">
+                    <h3 class="flow-title">個別婚活ヒアリング（シート記入）</h3>
+                    <p class="flow-desc">婚活状況のヒアリングと、事前提出情報をもとにした診断を行います。シート形式ですのでご都合の良いタイミングでご記入いただけます。</p>
+                </div>
+            </div>
+            <div class="flow-item reveal d3">
+                <div class="flow-circle">4</div>
+                <div class="flow-body">
+                    <h3 class="flow-title">婚活診断レポートPDF 納品</h3>
+                    <p class="flow-desc">面談後、レーダーチャート・強み・改善ポイント・30日アクションプランを含む診断レポートをPDFでお渡しします。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 10. FAQ ===== -->
+<section class="s-faq" id="faq">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="sec-label">FAQ</span>
+            <h2 class="sec-title">よくある質問</h2>
+            <div class="sec-line"></div>
+        </div>
+        <div class="faq-wrap">
+            <div class="faq-item reveal">
+                <div class="faq-q"><div class="faq-q-inner"><span class="faq-ql">Q</span><span class="faq-qtext">どんな方が対象ですか？</span></div><div class="faq-icon"></div></div>
+                <div class="faq-ans"><div class="faq-ans-inner"><span class="faq-al">A</span><p class="faq-atext">30〜40代の婚活中の男性を主な対象としています。結婚相談所への入会を検討している方、マッチングアプリで結果が出ていない方、婚活を始めたいが何から手をつけるか分からない方など、婚活に真剣な方であればどなたでも歓迎です。</p></div></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-q"><div class="faq-q-inner"><span class="faq-ql">Q</span><span class="faq-qtext">全国対応していますか？</span></div><div class="faq-icon"></div></div>
+                <div class="faq-ans"><div class="faq-ans-inner"><span class="faq-al">A</span><p class="faq-atext">はい、シート形式のヒアリングですので全国どこからでもご利用いただけます。名古屋近郊の方は、プロフィール改善パックのオプションや婚活ブーストプランで対面対応も可能です。</p></div></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-q"><div class="faq-q-inner"><span class="faq-ql">Q</span><span class="faq-qtext">βモニター価格はいつまでですか？</span></div><div class="faq-icon"></div></div>
+                <div class="faq-ans"><div class="faq-ans-inner"><span class="faq-al">A</span><p class="faq-atext">先着5名様限定のβモニター価格（4,980円）です。募集枠が埋まり次第、通常価格（9,800円）に変更となります。お早めにお申し込みください。</p></div></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-q"><div class="faq-q-inner"><span class="faq-ql">Q</span><span class="faq-qtext">婚活を始めたばかりでも大丈夫ですか？</span></div><div class="faq-icon"></div></div>
+                <div class="faq-ans"><div class="faq-ans-inner"><span class="faq-al">A</span><p class="faq-atext">もちろんです。婚活前に現在地を把握しておくことは非常に効果的です。最初から正しい方向で動き始められます。結婚相談所入会前の事前準備としてもご活用いただけます。</p></div></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-q"><div class="faq-q-inner"><span class="faq-ql">Q</span><span class="faq-qtext">診断後にコンサルを強く勧められますか？</span></div><div class="faq-icon"></div></div>
+                <div class="faq-ans"><div class="faq-ans-inner"><span class="faq-al">A</span><p class="faq-atext">いいえ。婚活診断レポートは単体で完結するサービスです。ご希望があれば他のプランもご案内しますが、無理なご提案は一切しません。レポートだけで十分に価値を感じていただける内容にします。</p></div></div>
+            </div>
+            <div class="faq-item reveal">
+                <div class="faq-q"><div class="faq-q-inner"><span class="faq-ql">Q</span><span class="faq-qtext">マッチングアプリを使っていなくても受けられますか？</span></div><div class="faq-icon"></div></div>
+                <div class="faq-ans"><div class="faq-ans-inner"><span class="faq-al">A</span><p class="faq-atext">受けていただけます。その場合は基本情報フォームとお手持ちの写真をもとに診断します。これから婚活を始める方の「事前準備診断」としてもご利用いただけます。</p></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 11. CONTACT ===== -->
+<section class="s-contact" id="contact">
+    <div class="container">
+        <div class="contact-tag reveal">✦ &nbsp;先着5名限定 βモニター募集中</div>
+        <h2 class="contact-title reveal d1">婚活診断を申し込む</h2>
+        <div class="contact-price-box reveal d2">
+            <span style="font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,0.75);text-transform:uppercase">通常価格</span>
+            <div class="contact-price-orig">9,800円</div>
+            <div style="font-size:16px;color:rgba(10,22,40,0.88);font-weight:700;line-height:1.8;letter-spacing:0.12em">↓ βモニター価格</div>
+            <div class="contact-price-main"><sup>¥</sup>4,980</div>
+            <div class="contact-price-note">先着5名限定</div>
+        </div>
+        <p class="contact-desc reveal d3">
+            フォームにご記入いただいた後、日程調整のご連絡をさせていただきます。<br>
+            個別婚活ヒアリング(シート記入)後、婚活診断レポートPDFをお渡しします。<br>
+            ご不明な点はお気軽にお問い合わせください。
+        </p>
+
+        <!-- ======================================================= -->
+        <!-- Google Form 埋め込みエリア                                -->
+        <!-- 以下の .form-placeholder を削除し、                       -->
+        <!-- Googleフォームの「埋め込み」iframeに置き換えてください    -->
+        <!-- ======================================================= -->
+        <div class="form-area reveal d4">
+            <div class="form-placeholder">
+                <p>GOOGLE FORM EMBED AREA<br>
+                <span style="font-size:10px;opacity:.6">ここにGoogleフォームのiframeを貼り付けてください</span></p>
+                <code>&lt;iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" width="100%" height="800" frameborder="0"&gt;&lt;/iframe&gt;</code>
+            </div>
+        </div>
+
+        <p class="contact-note reveal">
+            全国オンライン対応（Zoom / Google Meet）<br>
+            名古屋近郊は対面相談可能<br>
+            ご記入いただいた情報は本サービス以外には使用しません
+        </p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-logo">名古屋男性婚活研究所</div>
+    <div class="footer-sub">Nagoya Konkatsu Research Institute</div>
+    <div class="footer-copy">© 2026 名古屋男性婚活研究所. All rights reserved.</div>
+</footer>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floatingCta">
+    <div class="floating-badge">βモニター ¥4,980 · 先着5名</div>
+    <a href="#contact" class="floating-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        婚活診断を申し込む
+    </a>
+</div>
+
+<script>
+    // NAV + FLOATING CTA
+    const nav = document.getElementById('nav');
+    const floatingCta = document.getElementById('floatingCta');
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        nav.classList.toggle('scrolled', y > 60);
+        floatingCta.classList.toggle('visible', y > 500);
+    }, { passive: true });
+
+    // REVEAL ON SCROLL
+    const revealEls = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => obs.observe(el));
+
+    // FAQ ACCORDION
+    document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        });
+    });
+</script>
+</body>
+</html>
