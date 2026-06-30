@@ -184,20 +184,32 @@
 
         .hero-features {
             display: flex; align-items: center; justify-content: center;
-            flex-wrap: wrap; gap: 0; margin: 0 auto 48px;
+            flex-wrap: nowrap; gap: 0; margin: 0 auto 48px;
+            overflow-x: auto; -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; max-width: 100%;
         }
+        .hero-features::-webkit-scrollbar { display: none; }
         .hero-feat {
             font-family: 'Noto Sans JP', sans-serif;
             font-size: 12px; font-weight: 300; letter-spacing: 0.16em;
             color: rgba(255,255,255,0.82);
             border: 1px solid rgba(201,169,110,0.35);
-            padding: 12px 28px;
+            padding: 12px 28px; white-space: nowrap; flex-shrink: 0;
         }
         .hero-feat-sep {
             font-family: 'Cormorant Garamond', serif;
             font-size: 22px; color: var(--gold);
-            padding: 0 10px; opacity: 0.55; line-height: 1;
+            padding: 0 10px; opacity: 0.55; line-height: 1; flex-shrink: 0;
         }
+
+        /* ===== SLIDER HINT ===== */
+        .slider-hint {
+            display: none; text-align: center;
+            font-size: 10px; letter-spacing: 0.18em;
+            margin-top: 10px;
+        }
+        .slider-hint.on-dark { color: rgba(255,255,255,0.25); }
+        .slider-hint.on-light { color: rgba(0,0,0,0.25); }
         .hero-footnote {
             font-size: 11px; letter-spacing: 0.1em;
             color: rgba(255,255,255,0.3);
@@ -717,18 +729,49 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            section { padding: 72px 20px; }
+            section { padding: 52px 20px; }
+            .sec-head { margin-bottom: 32px; }
             .nav { padding: 16px 20px; }
             .nav.scrolled { padding: 12px 20px; }
             .nav-badge { display: none; }
-            .why-formula { flex-direction: column; }
-            .why-pillar { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+
+            /* Hero */
+            .hero { padding: 100px 20px 64px; }
+            .hero-feat { padding: 9px 14px; font-size: 11px; letter-spacing: 0.06em; }
+            .hero-feat-sep { padding: 0 5px; font-size: 16px; }
+            .hero-price { padding: 26px 40px; margin-bottom: 24px; }
+            .hero-features { justify-content: flex-start; }
+
+            /* Why Sachiko – compact */
+            .why-profile { margin-bottom: 20px; }
+            .why-profile-img { width: 80px; height: 80px; }
+            .why-formula { flex-direction: column; margin-bottom: 0; }
+            .why-pillar { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 18px 20px; }
             .why-pillar:last-child { border-bottom: none; }
-            .why-cross { padding: 4px 0; font-size: 24px; }
-            .why-grid { grid-template-columns: 1fr; }
-            .why-item.span2 { grid-column: auto; }
-            .why-item.span2 .why-content { text-align: left; }
+            .why-pillar-title { font-size: 16px; margin-bottom: 6px; }
+            .why-pillar-desc { font-size: 11px; }
+            .why-cross { padding: 1px 0; font-size: 18px; }
+            .why-formula-note { margin: 12px auto 20px; font-size: 12px; }
+
+            /* Why grid → horizontal slider */
+            .why-grid {
+                display: flex; flex-direction: row;
+                overflow-x: auto; scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch; scrollbar-width: none;
+                background: rgba(255,255,255,0.04); gap: 0;
+            }
+            .why-grid::-webkit-scrollbar { display: none; }
+            .why-item {
+                flex-shrink: 0; width: 84vw;
+                scroll-snap-align: start; padding: 24px 20px;
+                border-right: 1px solid rgba(255,255,255,0.06);
+            }
+            .why-item.span2 { grid-column: auto; width: 84vw; }
+            .why-item.span2 .why-content { text-align: left; max-width: 100%; }
             .why-item.span2 .why-tags { justify-content: flex-start; }
+            .slider-hint { display: block; }
+
+            /* Other sections */
             .learn-grid { grid-template-columns: 1fr 1fr; }
             .report-wrap { grid-template-columns: 1fr; gap: 32px; }
             .svc-grid { grid-template-columns: 1fr; }
@@ -738,14 +781,29 @@
             .floating-cta { bottom: 16px; right: 16px; }
         }
         @media (max-width: 480px) {
-            .pain-grid { grid-template-columns: 1fr; }
-            .learn-grid { grid-template-columns: 1fr; }
-            .hero-price { padding: 24px 32px; }
-            .hero-price-amount { font-size: 72px; }
-            .hero-price-amount sup { font-size: 24px; }
-            .contact-price-main { font-size: 72px; }
+            section { padding: 44px 16px; }
+            .pain-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .pain-card { padding: 14px 14px; }
+            .pain-text { font-size: 12px; }
+
+            /* Learn grid → horizontal slider */
+            .learn-grid {
+                display: flex; overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch; scrollbar-width: none;
+                gap: 12px; padding-bottom: 4px;
+            }
+            .learn-grid::-webkit-scrollbar { display: none; }
+            .learn-card { flex-shrink: 0; width: 72vw; scroll-snap-align: start; }
+
+            .hero-price { padding: 22px 30px; }
+            .hero-price-amount { font-size: 68px; }
+            .hero-price-amount sup { font-size: 22px; }
+            .contact-price-main { font-size: 68px; }
+            .contact-price-main sup { font-size: 24px; }
+            .contact-price-box { padding: 24px 40px; }
             .nav-badge { display: none; }
-            .why-formula-note { margin: -16px auto 40px; }
+            .why-formula-note { margin: 8px auto 16px; }
         }
     </style>
 </head>
@@ -804,10 +862,6 @@
         <div class="pain-grid">
             <div class="pain-card reveal d1">
                 <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                <p class="pain-text">結婚相談所に入るべきか、今の自分で大丈夫か迷っている</p>
-            </div>
-            <div class="pain-card reveal d2">
-                <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                 <p class="pain-text">マッチングアプリで結果が出ない。何が問題かわからない</p>
             </div>
             <div class="pain-card reveal d3">
@@ -821,10 +875,6 @@
             <div class="pain-card reveal d2">
                 <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                 <p class="pain-text">婚活を続けているのに、なかなか成果が出ない</p>
-            </div>
-            <div class="pain-card reveal d3">
-                <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-                <p class="pain-text">何を改善すれば良いかわからない</p>
             </div>
             <div class="pain-card reveal d1">
                 <div class="pain-icon"><svg viewBox="0 0 13 13" fill="none"><path d="M2 6.5l3 3 6-6" stroke="#1a2f52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -879,7 +929,7 @@
         <p class="why-formula-note reveal d2">この3つが重なるのが、Sachikoの診断が<strong>「使える」</strong>理由です。</p>
 
         <!-- DETAIL CARDS -->
-        <div class="why-grid">
+        <div class="why-grid" id="whyGrid">
             <div class="why-item reveal d1">
                 <div class="why-num">01 &nbsp;/ &nbsp;APPAREL</div>
                 <h3 class="why-title">元アパレル商社 営業</h3>
@@ -926,6 +976,7 @@
                 </div>
             </div>
         </div>
+        <p class="slider-hint on-dark">← スワイプして見る →</p>
     </div>
 </section>
 
@@ -937,7 +988,7 @@
             <h2 class="sec-title">婚活診断レポートで分かること</h2>
             <div class="sec-line"></div>
         </div>
-        <div class="learn-grid">
+        <div class="learn-grid" id="learnGrid">
             <div class="learn-card reveal d1">
                 <span class="learn-num">01</span>
                 <h3 class="learn-title">あなたの強み</h3>
@@ -969,6 +1020,7 @@
                 <p class="learn-desc">診断後すぐに動ける、30日間の具体的なアクションプランをお渡しします</p>
             </div>
         </div>
+        <p class="slider-hint on-light" style="margin-top:14px">← スワイプして見る →</p>
     </div>
 </section>
 
