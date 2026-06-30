@@ -805,6 +805,18 @@
             .nav-badge { display: none; }
             .why-formula-note { margin: 8px auto 16px; }
         }
+
+        /* ===== LEARN DOTS ===== */
+        .learn-dots {
+            display: none; justify-content: center; gap: 8px; margin-top: 14px;
+        }
+        .learn-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--beige-dark); border: none; padding: 0; cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .learn-dot.active { background: var(--gold); transform: scale(1.35); }
+        @media (max-width: 480px) { .learn-dots { display: flex; } }
     </style>
 </head>
 <body>
@@ -1020,7 +1032,14 @@
                 <p class="learn-desc">診断後すぐに動ける、30日間の具体的なアクションプランをお渡しします</p>
             </div>
         </div>
-        <p class="slider-hint on-light" style="margin-top:14px">← スワイプして見る →</p>
+        <div class="learn-dots" id="learnDots">
+            <button class="learn-dot active"></button>
+            <button class="learn-dot"></button>
+            <button class="learn-dot"></button>
+            <button class="learn-dot"></button>
+            <button class="learn-dot"></button>
+            <button class="learn-dot"></button>
+        </div>
     </div>
 </section>
 
@@ -1408,6 +1427,63 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
     }, { threshold: 0.12 });
     revealEls.forEach(el => obs.observe(el));
+
+    // LEARN GRID AUTO-CAROUSEL (mobile ≤480px)
+    (function () {
+        const grid = document.getElementById('learnGrid');
+        const dots = document.querySelectorAll('#learnDots .learn-dot');
+        if (!grid || !dots.length) return;
+
+        const cards = Array.from(grid.querySelectorAll('.learn-card'));
+        let current = 0;
+        let timer = null;
+        let userTouched = false;
+
+        function isMobile() { return window.innerWidth <= 480; }
+
+        function goTo(index) {
+            current = (index + cards.length) % cards.length;
+            grid.scrollTo({ left: cards[current].offsetLeft, behavior: 'smooth' });
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        }
+
+        function next() { if (isMobile()) goTo(current + 1); }
+
+        function startTimer() {
+            clearInterval(timer);
+            if (isMobile()) timer = setInterval(next, 3000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            setTimeout(startTimer, 5000); // ユーザー操作後5秒で再開
+        }
+
+        // スクロール位置でドット同期
+        grid.addEventListener('scroll', () => {
+            const scrollLeft = grid.scrollLeft;
+            let nearest = 0, minDist = Infinity;
+            cards.forEach((c, i) => {
+                const d = Math.abs(c.offsetLeft - scrollLeft);
+                if (d < minDist) { minDist = d; nearest = i; }
+            });
+            current = nearest;
+            dots.forEach((d, i) => d.classList.toggle('active', i === nearest));
+        }, { passive: true });
+
+        // タッチ時は一時停止
+        grid.addEventListener('touchstart', resetTimer, { passive: true });
+
+        // ドットクリック
+        dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetTimer(); }));
+
+        // 初期化
+        if (isMobile()) { goTo(0); startTimer(); }
+        window.addEventListener('resize', () => {
+            clearInterval(timer);
+            if (isMobile()) startTimer();
+        });
+    })();
 
     // FAQ ACCORDION
     document.querySelectorAll('.faq-q').forEach(q => {
