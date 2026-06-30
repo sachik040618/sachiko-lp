@@ -806,6 +806,18 @@
             .why-formula-note { margin: 8px auto 16px; }
         }
 
+        /* ===== WHY DOTS ===== */
+        .why-dots {
+            display: none; justify-content: center; gap: 8px; margin-top: 14px;
+        }
+        .why-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: rgba(255,255,255,0.2); border: none; padding: 0; cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .why-dot.active { background: var(--gold); transform: scale(1.35); }
+        @media (max-width: 768px) { .why-dots { display: flex; } }
+
         /* ===== LEARN DOTS ===== */
         .learn-dots {
             display: none; justify-content: center; gap: 8px; margin-top: 14px;
@@ -988,7 +1000,13 @@
                 </div>
             </div>
         </div>
-        <p class="slider-hint on-dark">← スワイプして見る →</p>
+        <div class="why-dots" id="whyDots">
+            <button class="why-dot active"></button>
+            <button class="why-dot"></button>
+            <button class="why-dot"></button>
+            <button class="why-dot"></button>
+            <button class="why-dot"></button>
+        </div>
     </div>
 </section>
 
@@ -1427,6 +1445,55 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
     }, { threshold: 0.12 });
     revealEls.forEach(el => obs.observe(el));
+
+    // WHY GRID AUTO-CAROUSEL (mobile ≤768px)
+    (function () {
+        const grid = document.getElementById('whyGrid');
+        const dots = document.querySelectorAll('#whyDots .why-dot');
+        if (!grid || !dots.length) return;
+
+        const cards = Array.from(grid.querySelectorAll('.why-item'));
+        let current = 0;
+        let timer = null;
+
+        function isMobile() { return window.innerWidth <= 768; }
+
+        function goTo(index) {
+            current = (index + cards.length) % cards.length;
+            grid.scrollTo({ left: cards[current].offsetLeft, behavior: 'smooth' });
+            dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        }
+
+        function startTimer() {
+            clearInterval(timer);
+            if (isMobile()) timer = setInterval(() => goTo(current + 1), 3000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            setTimeout(startTimer, 5000);
+        }
+
+        grid.addEventListener('scroll', () => {
+            const scrollLeft = grid.scrollLeft;
+            let nearest = 0, minDist = Infinity;
+            cards.forEach((c, i) => {
+                const d = Math.abs(c.offsetLeft - scrollLeft);
+                if (d < minDist) { minDist = d; nearest = i; }
+            });
+            current = nearest;
+            dots.forEach((d, i) => d.classList.toggle('active', i === nearest));
+        }, { passive: true });
+
+        grid.addEventListener('touchstart', resetTimer, { passive: true });
+        dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetTimer(); }));
+
+        if (isMobile()) { goTo(0); startTimer(); }
+        window.addEventListener('resize', () => {
+            clearInterval(timer);
+            if (isMobile()) startTimer();
+        });
+    })();
 
     // LEARN GRID AUTO-CAROUSEL (mobile ≤480px)
     (function () {
